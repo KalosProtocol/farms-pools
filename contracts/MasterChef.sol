@@ -63,7 +63,7 @@ contract MasterChef is Ownable {
     // The XALO TOKEN!
     KalosToken public xalo;
     // The Xkalos TOKEN!
-    Xkalo public xkalo;
+    Xkalos public xkalos;
     // Dev address.
     address public devaddr;
     // XALO tokens created per block.
@@ -88,13 +88,13 @@ contract MasterChef is Ownable {
 
     constructor(
         KalosToken _xalo,
-        Xkalo _xkalo,
+        Xkalos _xkalos,
         address _devaddr,
         uint256 _xaloPerBlock,
         uint256 _startBlock
     ) public {
         xalo = _xalo;
-        xkalo = _xkalo;
+        xkalos = _xkalos;
         devaddr = _devaddr;
         xaloPerBlock = _xaloPerBlock;
         startBlock = _startBlock;
@@ -219,7 +219,7 @@ contract MasterChef is Ownable {
         uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
         uint256 xaloReward = multiplier.mul(xaloPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
         xalo.mint(devaddr, xaloReward.div(10));
-        xalo.mint(address(xkalo), xaloReward);
+        xalo.mint(address(xkalos), xaloReward);
         pool.accXaloPerShare = pool.accXaloPerShare.add(xaloReward.mul(1e12).div(lpSupply));
         pool.lastRewardBlock = block.number;
     }
@@ -282,7 +282,7 @@ contract MasterChef is Ownable {
         }
         user.rewardDebt = user.amount.mul(pool.accXaloPerShare).div(1e12);
 
-        xkalo.mint(msg.sender, _amount);
+        xkalos.mint(msg.sender, _amount);
         emit Deposit(msg.sender, 0, _amount);
     }
 
@@ -302,7 +302,7 @@ contract MasterChef is Ownable {
         }
         user.rewardDebt = user.amount.mul(pool.accXaloPerShare).div(1e12);
 
-        xkalo.burn(msg.sender, _amount);
+        xkalos.burn(msg.sender, _amount);
         emit Withdraw(msg.sender, 0, _amount);
     }
 
@@ -318,7 +318,7 @@ contract MasterChef is Ownable {
 
     // Safe xalo transfer function, just in case if rounding error causes pool to not have enough XALOs.
     function safeXaloTransfer(address _to, uint256 _amount) internal {
-        syrup.safeXaloTransfer(_to, _amount);
+        xkalos.safeXaloTransfer(_to, _amount);
     }
 
     // Update dev address by the previous dev.
