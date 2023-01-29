@@ -7,7 +7,7 @@ import "bsc-library/contracts/IBEP20.sol";
 import "bsc-library/contracts/SafeBEP20.sol";
 
 import "./KalosToken.sol";
-import "./Xkalo.sol";
+import "./Xkalos.sol";
 
 // import "@nomiclabs/buidler/console.sol";
 
