@@ -1,6 +1,6 @@
 # Kalos Farms & pools Contracts
 
-This repo contains all the contracts used in Kalos DeFi. It is divided in independent projects where each of them contains its smart contracts, test environment and unique config files.
+This repo contains all the contracts used in Kalos DeFi.
 
 ## Existing projects
 
